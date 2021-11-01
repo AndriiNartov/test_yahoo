@@ -69,7 +69,7 @@ class ProcessingByDB:
         company = self.db.query(Company).filter_by(ticker=self.ticker).first()
         if company:
             return company
-        # raise CompanyDoesNotExists(f'Company with ticker "{self.ticker}" does not exist')
+        raise CompanyDoesNotExists(f'Company with ticker "{self.ticker}" does not exist')
 
     def create_new_company(self):
         if not self.check_if_company_exists():
@@ -86,15 +86,14 @@ class ProcessingByDB:
         pd_content = pd.read_csv(io.StringIO(content.decode('utf-8')))
         pd_content = pd_content[pd_content['Open'].notna()]
         pd_content.rename(
-            columns=
-            {
-            'Date': 'date',
-            'Open': 'open',
-            'High': 'high',
-            'Low': 'low',
-            'Close': 'close',
-            'Adj Close': 'adj_close',
-            'Volume': 'volume',
+            columns={
+                'Date': 'date',
+                'Open': 'open',
+                'High': 'high',
+                'Low': 'low',
+                'Close': 'close',
+                'Adj Close': 'adj_close',
+                'Volume': 'volume',
             },
             inplace=True
         )

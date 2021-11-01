@@ -1,5 +1,3 @@
-import time
-
 from fastapi import Depends, FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
@@ -51,7 +49,7 @@ async def index(request: Request):
 async def test_app_for_companies_list(ticker: str, request: Request, db: Session = Depends(get_db)):
     db_proc = ProcessingByDB(ticker, db)
     context = dict()
-    if not db_proc.get_company():
+    if not db_proc.check_if_company_exists():
         response = get_response_from_yahoo(ticker)
         create_company_and_records(db_proc, response.content)
         context['message'] = f"Data for company '{ticker}' were successfully saved to DB!"
