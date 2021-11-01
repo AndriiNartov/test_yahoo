@@ -55,6 +55,7 @@ async def test_app_for_companies_list(ticker: str, request: Request, db: Session
         response = get_response_from_yahoo(ticker)
         create_company_and_records(db_proc, response.content)
         context['message'] = f"Data for company '{ticker}' were successfully saved to DB!"
+    db_proc.check_if_db_needs_update()
     records = get_result_for_company_test_list(db, ticker)
     context['request'] = request
     context['company'] = ticker

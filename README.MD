@@ -5,9 +5,11 @@ Object of this task is to create a REST API service, which will deliver data wit
 
 ## Set up and run project:
 
-First, you should configure your postgresql and redis host names.
+First, you should configure your database url and redis host name.
 
-In ```config.py``` you should set ```postgresql_host``` and ```redis_host``` variables(by default set for running app using Docker).
+In ```config.py``` you should set ```database_url``` and ```redis_host``` variables(by default set for running app using Docker).
+
+If you are not going to run the application with Docker you should change those variables from ```docker``` to ```local```.
 
 ### Using Docker
 You should change your working directory to 'test_yahoo' and run command:
