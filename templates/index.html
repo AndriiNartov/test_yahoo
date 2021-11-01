@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-4 offset-4">
+            {% for company in companies %}
+            <div class="card mb-2">
+                <p>{{ company }}</p>
+                <a class="btn btn-primary" href="{{ request.url }}test/{{ company }}">Get Data</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

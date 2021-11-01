@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  {% if message %}
+    <div class="alert alert-success" role="alert">
+      {{ message }}
+    </div>
+  {% endif %}
+  <div class="row  mt-5 justify-content-center">
+    <div class="col">
+    <h1 class="text-center">{{ company }}</h1>
+    <table class="table table-bordered table-hover">
+    <thead>
+      <th>Date</th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Adj. Close</th>
+      <th>Volume</th>
+    </thead>
+    {% for record in records[:5] %}
+      <tr>
+        <td>{{ record.date }}</td>
+        <td>{{ record.open }}</td>
+        <td>{{ record.high }}</td>
+        <td>{{ record.low }}</td>
+        <td>{{ record.close }}</td>
+        <td>{{ record.adj_close }}</td>
+        <td>{{ record.volume }}</td>
+      </tr>
+    {% endfor %}
+    <tr class="text-center">
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    {% for record in records[-5:] %}
+      <tr>
+        <td>{{ record.date }}</td>
+        <td>{{ record.open }}</td>
+        <td>{{ record.high }}</td>
+        <td>{{ record.low }}</td>
+        <td>{{ record.close }}</td>
+        <td>{{ record.adj_close }}</td>
+        <td>{{ record.volume }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
