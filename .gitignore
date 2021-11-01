@@ -15,3 +15,5 @@ __pycache__/
 *.db
 
 *.djcache
+
+sql_app.db
